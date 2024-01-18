@@ -10,7 +10,7 @@ $_SESSION["link-login-only"] = $_POST['link-login-only'];
 
 $_SESSION["user_type"] = "new";
 
-# Checking DB to see if user exists or not.
+# Checking DB to see if user exists or not
 
 mysqli_report(MYSQLI_REPORT_OFF);
 $result = mysqli_query($con, "SELECT * FROM `$table_name` WHERE mac='$_SESSION[mac]'");
