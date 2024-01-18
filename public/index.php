@@ -55,12 +55,14 @@ if ($result->num_rows >= 1) {
     <div class="main">
         <section class="section">
             <div class="container">
-                <div id="contact_form" class="content is-size-5 has-text-centered has-text-weight-bold">Enter your details
+                <div id="contact_form" class="content has-text-centered">
+                    Please provide the following details to connect to the LAMA Retail free WIFI!
                 </div>
+                <br>
                 <form method="post" action="connect.php">
                     <div class="field">
                         <div class="control has-icons-left">
-                            <input class="input" type="text" id="form_font" name="fname" placeholder="First Name" required>
+                            <input class="input" type="text" id="form_font" name="name" placeholder="Name" required>
                             <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
@@ -68,9 +70,9 @@ if ($result->num_rows >= 1) {
                     </div>
                     <div class="field">
                         <div class="control has-icons-left">
-                            <input class="input" type="text" id="form_font" name="lname" placeholder="Last Name" required>
+                            <input class="input" type="text" id="form_font" name="phone" placeholder="Phone Number" required>
                             <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-mobile"></i>
                             </span>
                         </div>
                     </div>
@@ -87,7 +89,7 @@ if ($result->num_rows >= 1) {
                         <div class="control">
                             <label class="checkbox">
                                 <input type="checkbox" required>
-                                I agree to the <a href="policy.php">Terms of Use</a>
+                                I agree to the <a href="policy.php">Terms & Conditions</a>
                             </label>
                         </div>
                     </div>
