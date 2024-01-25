@@ -7,7 +7,8 @@ $mac = $_SESSION["mac"];
 $ip = $_SESSION["ip"];
 $link_login = $_SESSION["link-login"];
 $link_login_only = $_SESSION["link-login-only"];
-$linkorig = "https://www.google.com";
+$linkorig = $_SERVER['REDIRECT_URL'];
+$site = $_SESSION["sitename"];
 
 $username="admin";
 
@@ -23,13 +24,14 @@ if ($_SESSION["user_type"] == "new") {
     `name` varchar(45) NOT NULL,
     `phone` varchar(45) NOT NULL,
     `email` varchar(45) NOT NULL,
+    `site` varchar(45) NOT NULL,
     `mac` varchar(45) NOT NULL,
     `ip` varchar(45) NOT NULL,
     `last_updated` varchar(45) NOT NULL,
     PRIMARY KEY (`id`)
     )");
 
-    mysqli_query($con,"INSERT INTO `$table_name` (name, phone, email, mac, ip, last_updated) VALUES ('$name', '$phone', '$email', '$mac', '$ip', NOW())");
+    mysqli_query($con,"INSERT INTO `$table_name` (name, phone, email, site, mac, ip, last_updated) VALUES ('$name', '$phone', '$email', '$site','$mac', '$ip', NOW())");
 }
 
 mysqli_close($con);
