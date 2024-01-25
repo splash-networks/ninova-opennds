@@ -84,7 +84,7 @@ mysqli_close($con);
         frm.submit();
     }
     // window.onload = formAutoSubmit;
-    window.onload = setTimeout(formAutoSubmit, 2500);
+    window.onload = setTimeout(formAutoSubmit, 2000);
 
 </script>
 
