@@ -75,7 +75,7 @@ if ($result->num_rows >= 1) {
                     </div>
                     <div class="field">
                         <div class="control has-icons-left">
-                            <input class="input" type="text" id="form_font" name="phone" placeholder="Phone Number" required>
+                            <input class="input" type="tel" id="form_font" name="phone" placeholder="Phone Number" required>
                             <span class="icon is-small is-left">
                                 <i class="fas fa-mobile"></i>
                             </span>
