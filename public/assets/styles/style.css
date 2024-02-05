@@ -2,75 +2,65 @@
     *{ border: 1px solid red; }
 */
 
-.page
-{
+.page {
   height: 100vh;
   margin: 0 auto;
   max-width: 100%;
   font-family: "Ariel", sans-serif;
 }
 
-a:link
-{
+a:link {
   text-decoration: underline;
 }
 
-.head
-{
+.head {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
 }
 
-.main
-{
+.main {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
 }
 
-#logo
-{
+.iti {
+  width: 100%;
+}
+
+#logo {
   width: 35%;
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
-#contact_form
-{
+#contact_form {
   margin-bottom: 5px;
 }
 
-#margin_zero
-{
+#margin_zero {
   margin: 0;
 }
 
 /* Media Query for iPads */
 
-@media only screen 
-and (min-width: 600px)
-{
-  #logo
-  {
+@media only screen and (min-width: 600px) {
+  #logo {
     max-width: 40%;
   }
 }
 
 /* Media Query for Desktops */
 
-@media only screen   
-and (min-width: 768px)
-{
-  #logo
-  {
+@media only screen and (min-width: 768px) {
+  #logo {
     max-width: 10%;
   }
-  .main
-  {
+  .main {
     height: 80%;
   }
 }
