@@ -76,7 +76,7 @@ if ($result->num_rows >= 1) {
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class=" input" type="tel" id="phone" name="phone" required>
+                                <input class="input" type="tel" id="phone" name="phone[full]" required>
                             </div>
                         </div>
                         <div class="field">
@@ -110,7 +110,6 @@ if ($result->num_rows >= 1) {
         const input = document.querySelector("#phone");
         const iti = window.intlTelInput(input, {
             initialCountry: "pk",
-            nationalMode: false,
             hiddenInput: "full",
             utilsScript: "assets/build/js/utils.js?1706723638591"
         });
