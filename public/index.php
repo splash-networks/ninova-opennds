@@ -76,12 +76,12 @@ if ($result->num_rows >= 1) {
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="tel" id="phone" name="phone[full]" required>
+                                <input class="input" type="tel" id="phone" name="phone[full]" onkeydown="return onlyNumberKey(event)" placeholder="Phone" pattern="^03\d{9}$" title="03xxxxxxxxx" maxlength="11" required>
                             </div>
                         </div>
-                        <div class="field">
+                        <div class=" field">
                             <div class="control has-icons-left">
-                                <input class="input" type="email" id="form_font" name="email" placeholder="Email" required>
+                                <input class="input" type="email" id="form_font" name="email" placeholder="Email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="name@domain.xxx" required>
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-envelope"></i>
                                 </span>
@@ -113,6 +113,15 @@ if ($result->num_rows >= 1) {
             hiddenInput: "full",
             utilsScript: "assets/build/js/utils.js?1706723638591"
         });
+    </script>
+    <script>
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
+        }
     </script>
 </body>
 
