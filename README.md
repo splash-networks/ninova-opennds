@@ -1,4 +1,4 @@
-# Mikrotik External Captive Portal
+# OpenNDS External Captive Portal
 
 The following actions are required to use the code given in this repo:
 

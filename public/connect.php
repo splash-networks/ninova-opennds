@@ -4,19 +4,16 @@ require 'header.php';
 include 'config.php';
 
 $mac = $_SESSION["mac"];
-$ip = $_SESSION["ip"];
-$link_login = $_SESSION["link-login"];
-$link_login_only = $_SESSION["link-login-only"];
-$linkorig = $_SERVER['REDIRECT_URL'];
-$site = $_SESSION["sitename"];
 
-$username = "admin";
+$authaction = $_SERVER['authaction'];
+$tok = $_SERVER['tok'];
+$redir = $_SERVER['REDIRECT_URL'];
 
 if ($_SESSION["user_type"] == "new") {
 
-    $name = $_POST['name'];
-    $phone = $_POST['phone']['full'];
-    $email = $_POST['email'];
+    $name = $_SESSION['name'];
+    $phone = $_SESSION['phone'];
+    $email = $_SESSION['email'];
 
     mysqli_query($con, "
     CREATE TABLE IF NOT EXISTS `$table_name` (
@@ -24,14 +21,13 @@ if ($_SESSION["user_type"] == "new") {
     `name` varchar(45) NOT NULL,
     `phone` varchar(45) NOT NULL,
     `email` varchar(45) NOT NULL,
-    `site` varchar(45) NOT NULL,
     `mac` varchar(45) NOT NULL,
-    `ip` varchar(45) NOT NULL,
     `last_updated` varchar(45) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY (mac)
     )");
 
-    mysqli_query($con, "INSERT INTO `$table_name` (name, phone, email, site, mac, ip, last_updated) VALUES ('$name', '$phone', '$email', '$site','$mac', '$ip', NOW())");
+    mysqli_query($con, "INSERT INTO `$table_name` (name, phone, email, mac, last_updated) VALUES ('$name', '$phone', '$email','$mac', NOW())");
 }
 
 mysqli_close($con);
@@ -65,7 +61,9 @@ mysqli_close($con);
         <div class="main">
             <seection class="section">
                 <div class="container">
-                    <div id="margin_zero" class="content has-text-centered is-size-6">Please wait, you are being</div>
+                    <div id="margin_zero" class="content has-text-centered is-size-6">Great! Your code has been approved!</div>
+                    <br>
+                    <div id="margin_zero" class="content has-text-centered is-size-6">Please wait while you are being</div>
                     <div id="margin_zero" class="content has-text-centered is-size-6">authorized on the network</div>
                 </div>
             </seection>
@@ -73,30 +71,18 @@ mysqli_close($con);
 
     </div>
 
-    <script type="text/javascript">
-        function doLogin() {
-            document.sendin.username.value = document.login.username.value;
-            document.sendin.password.value = hexMD5('\011\373\054\364\002\233\266\263\270\373\173\323\234\313\365\337\356');
-            document.sendin.submit();
-            return false;
-        }
-    </script>
-    <script type="text/javascript">
-        function formAutoSubmit() {
-            var frm = document.getElementById("login");
-            document.getElementById("login").submit();
-            frm.submit();
-        }
-        // window.onload = formAutoSubmit;
-        window.onload = setTimeout(formAutoSubmit, 2000);
-    </script>
-
-    <form id="login" method="post" action="<?php echo $link_login_only; ?>" onSubmit="return doLogin()">
-        <input name="dst" type="hidden" value="<?php echo $linkorig; ?>" />
-        <input name="popup" type="hidden" value="false" />
-        <input name="username" type="hidden" value="<?php echo $username; ?>" />
-        <input name="password" type="hidden" />
+    <form id="form1" name="form1" method=GET action="<?php echo htmlspecialchars($authaction); ?>">
+        <input name=tok value="<?php echo htmlspecialchars($tok); ?>" type="hidden">
+        <input name=redir value="<?php echo htmlspecialchars($redir); ?>" type="hidden">
     </form>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            window.setTimeout(function () {
+                document.form1.submit();
+            }, 2);
+        };
+    </script>
 
 </body>
 
