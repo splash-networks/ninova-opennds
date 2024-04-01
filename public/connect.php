@@ -9,6 +9,8 @@ $tok = $_SESSION['tok'];
 $redir = $_SESSION['REDIRECT_URL'];
 $table_name = $_SERVER['TABLE_DATA'];
 
+echo $mac . PHP_EOL;
+
 if ($_SESSION["user_type"] == "new") {
 
     $name = $_SESSION['name'];
