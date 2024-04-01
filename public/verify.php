@@ -16,7 +16,6 @@ if (!isset($_POST['verify'])) {
   $digits = $_SERVER['OTP_DIGITS'];
   $otp = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
   echo $otp . PHP_EOL;
-  echo $_SESSION["phone"] . PHP_EOL;
 
   mysqli_query($con, "
     CREATE TABLE IF NOT EXISTS `$table_name` (
