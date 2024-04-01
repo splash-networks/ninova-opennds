@@ -44,6 +44,7 @@ $originurl=$GLOBALS["originurl"];
 
 $_SESSION['authaction'] = "http://$gatewayaddress/opennds_auth/";
 $_SESSION['tok'] = hash('sha256', $hid.$key);
+$_SESSION['mac'] = $GLOBALS["clientmac"];
 $table_name = $_SERVER['TABLE_DATA'];
 $_SESSION["user_type"] = "new";
 
