@@ -34,6 +34,7 @@ $host=$_SERVER['HTTP_HOST'];
 $fas=$GLOBALS["fas"];
 $iv=$GLOBALS["iv"];
 $clientip=$GLOBALS["clientip"];
+$clientmac=$GLOBALS["clientmac"];
 $gatewayname=$GLOBALS["gatewayname"];
 $gatewayaddress=$GLOBALS["gatewayaddress"];
 $gatewaymac=$GLOBALS["gatewaymac"];
@@ -44,7 +45,7 @@ $originurl=$GLOBALS["originurl"];
 
 //$arr = get_defined_vars();
 //print_r($arr);
-echo $GLOBALS["clientmac"] . PHP_EOL;
+echo $clientmac . PHP_EOL;
 
 $_SESSION['authaction'] = "http://$gatewayaddress/opennds_auth/";
 $_SESSION['tok'] = hash('sha256', $hid.$key);
