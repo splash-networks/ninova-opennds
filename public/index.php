@@ -47,6 +47,12 @@ $_SESSION['tok'] = hash('sha256', $hid.$key);
 $table_name = $_SERVER['TABLE_DATA'];
 $_SESSION["user_type"] = "new";
 
+echo $_SESSION['authaction'] . PHP_EOL;
+echo $_SESSION['tok'] . PHP_EOL;
+echo $gatewayaddress . PHP_EOL;
+echo $hid . PHP_EOL;
+echo $key . PHP_EOL;
+
 # Checking DB to see if user exists or not
 
 $result = mysqli_query($con, "SELECT * FROM `$table_name` WHERE mac = '" . $_SESSION['mac'] . "'");
