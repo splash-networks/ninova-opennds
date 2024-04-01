@@ -14,7 +14,8 @@ if (!isset($_POST['verify'])) {
 
   $digits = $_SERVER['OTP_DIGITS'];
   $otp = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
-  echo $otp;
+  echo $otp . PHP_EOL;
+  echo $_SESSION["phone"] . PHP_EOL;
 
   mysqli_query($con, "
     CREATE TABLE IF NOT EXISTS `$table_name` (
@@ -50,17 +51,6 @@ if (!isset($_POST['verify'])) {
       $otp_error = true;
     }
   }
-//  $verification_check = $twilio->verify->v2->services($serviceid)
-//    ->verificationChecks
-//    ->create(
-//      $_SESSION['code'], // code
-//      ["to" => $_SESSION['address']]
-//    );
-//
-//  if ($verification_check->status == "approved") {
-//    $_SESSION['result'] = true;
-//  }
-//  header("Location: verify_result.php");
 }
 
 ?>

@@ -4,10 +4,10 @@ require 'header.php';
 include 'config.php';
 
 $mac = $_SESSION["mac"];
-
 $authaction = $_SESSION['authaction'];
 $tok = $_SESSION['tok'];
 $redir = $_SESSION['REDIRECT_URL'];
+$table_name = $_SERVER['TABLE_DATA'];
 
 if ($_SESSION["user_type"] == "new") {
 
