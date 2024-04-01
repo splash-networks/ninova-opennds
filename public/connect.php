@@ -5,13 +5,9 @@ include 'config.php';
 
 $mac = $_SESSION["mac"];
 
-$authaction = $_SERVER['authaction'];
-$tok = $_SERVER['tok'];
-$redir = $_SERVER['REDIRECT_URL'];
-
-echo $authaction . PHP_EOL;
-echo $tok . PHP_EOL;
-echo $redir . PHP_EOL;
+$authaction = $_SESSION['authaction'];
+$tok = $_SESSION['tok'];
+$redir = $_SESSION['REDIRECT_URL'];
 
 if ($_SESSION["user_type"] == "new") {
 
@@ -84,7 +80,7 @@ mysqli_close($con);
         window.onload = function () {
             window.setTimeout(function () {
                 document.form1.submit();
-            }, 5000);
+            }, 2000);
         };
     </script>
 
