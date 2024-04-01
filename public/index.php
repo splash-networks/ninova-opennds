@@ -42,8 +42,8 @@ $hid=$GLOBALS["hid"];
 $clientif=$GLOBALS["clientif"];
 $originurl=$GLOBALS["originurl"];
 
-$_SERVER['authaction'] = "http://$gatewayaddress/opennds_auth/";
-$_SERVER['tok'] = hash('sha256', $hid.$key);
+$_SESSION['authaction'] = "http://$gatewayaddress/opennds_auth/";
+$_SESSION['tok'] = hash('sha256', $hid.$key);
 $table_name = $_SERVER['TABLE_DATA'];
 $_SESSION["user_type"] = "new";
 
