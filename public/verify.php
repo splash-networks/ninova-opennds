@@ -46,11 +46,13 @@ if (!isset($_POST['verify'])) {
   if (!empty($count)) {
     $row = mysqli_fetch_array($result);
     if ($row['otp'] === $_SESSION['code']) {
+      echo "otp correct" . PHP_EOL;
       $_SESSION['result'] = true;
       $result = mysqli_query($con, "UPDATE `$table_name` SET valid = 0 WHERE id = '" . $row['id'] . "'");
       header("Location: connect.php");
     } else {
       $otp_error = true;
+      echo "otp wrong" . PHP_EOL;
     }
   }
 }
