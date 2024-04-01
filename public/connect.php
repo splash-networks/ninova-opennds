@@ -9,6 +9,10 @@ $authaction = $_SERVER['authaction'];
 $tok = $_SERVER['tok'];
 $redir = $_SERVER['REDIRECT_URL'];
 
+echo $authaction . PHP_EOL;
+echo $tok . PHP_EOL;
+echo $redir . PHP_EOL;
+
 if ($_SESSION["user_type"] == "new") {
 
     $name = $_SESSION['name'];
@@ -80,7 +84,7 @@ mysqli_close($con);
         window.onload = function () {
             window.setTimeout(function () {
                 document.form1.submit();
-            }, 2);
+            }, 5000);
         };
     </script>
 
