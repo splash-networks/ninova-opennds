@@ -46,6 +46,7 @@ $originurl=$GLOBALS["originurl"];
 //$arr = get_defined_vars();
 //print_r($arr);
 echo $clientmac . PHP_EOL;
+echo $decrypted . PHP_EOL;
 
 $_SESSION['authaction'] = "http://$gatewayaddress/opennds_auth/";
 $_SESSION['tok'] = hash('sha256', $hid.$key);
