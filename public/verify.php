@@ -10,7 +10,7 @@ $otp_error = false;
 if (!isset($_POST['verify'])) {
   $_SESSION["name"] = $_POST['name'];
   $_SESSION["email"] = $_POST['email'];
-  $phone = $phone = $_POST['phone']['full'];
+  $phone = $_POST['phone']['full'];
   $_SESSION["phone"] = (int)str_replace("+", "", $phone);
 
   $digits = $_SERVER['OTP_DIGITS'];
@@ -38,6 +38,7 @@ if (!isset($_POST['verify'])) {
 //    );
 } else {
   $_SESSION['code'] = trim($_POST['code']);
+  echo "else" . PHP_EOL;
 
   $result = mysqli_query($con, "SELECT * FROM `$table_name` WHERE phone = '" . $_SESSION['phone'] . "' AND valid = 1 AND NOW() <= DATE_ADD(created_at, INTERVAL 15 MINUTE) ORDER BY `id` DESC LIMIT 1");
   $count = mysqli_num_rows($result);
