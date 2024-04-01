@@ -143,7 +143,7 @@ if ($result->num_rows >= 1) {
         const input = document.querySelector("#phone");
         const button = document.querySelector("#btn");
         const iti = window.intlTelInput(input, {
-            initialCountry: "tr",
+            initialCountry: "pk",
             hiddenInput: "full",
             utilsScript: "assets/build/js/utils.js"
         });
