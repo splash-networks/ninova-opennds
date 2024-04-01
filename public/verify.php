@@ -9,8 +9,9 @@ $otp_error = false;
 
 if (!isset($_POST['verify'])) {
   $_SESSION["name"] = $_POST['name'];
-  $_SESSION["phone"] = $phone = $_POST['phone']['full'];
   $_SESSION["email"] = $_POST['email'];
+  $phone = $phone = $_POST['phone']['full'];
+  $_SESSION["phone"] = (int)str_replace("+", "", $phone);
 
   $digits = $_SERVER['OTP_DIGITS'];
   $otp = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
