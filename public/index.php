@@ -3,47 +3,47 @@
 require 'header.php';
 require 'config.php';
 
-$fullname=$email=$gatewayname=$clientip=$gatewayaddress=$hid=$gatewaymac=$clientif=$redir=$client_zone="";
+$fullname = $email = $gatewayname = $clientip = $gatewayaddress = $hid = $gatewaymac = $clientif = $redir = $client_zone = "";
 
-$key="128bcddbf4df3e16147dbb31b3b1b16472a3d2608f10b5407c8cdc352433761f";
-$cipher="AES-256-CBC";
-$iv=$_GET['iv'];
-$string=$_GET['fas'];
+$key = "128bcddbf4df3e16147dbb31b3b1b16472a3d2608f10b5407c8cdc352433761f";
+$cipher = "AES-256-CBC";
+$iv = $_GET['iv'];
+$string = $_GET['fas'];
 
-$ndsparamlist=explode(" ", "clientip clientmac client_type gatewayname gatewayurl version hid gatewayaddress gatewaymac authdir originurl clientif admin_email location");
+$ndsparamlist = explode(" ", "clientip clientmac client_type gatewayname gatewayurl version hid gatewayaddress gatewaymac authdir originurl clientif admin_email location");
 
-$decrypted=openssl_decrypt( base64_decode( $string ), $cipher, $key, 0, $iv );
-$dec_r=explode(", ",$decrypted);
+$decrypted = openssl_decrypt(base64_decode($string), $cipher, $key, 0, $iv);
+$dec_r = explode(", ", $decrypted);
 
 foreach ($ndsparamlist as $ndsparm) {
-  foreach ($dec_r as $dec) {
-    @list($name,$value)=explode("=",$dec);
-    if ($name == $ndsparm) {
-      $$name = $value;
-      break;
+    foreach ($dec_r as $dec) {
+        @list($name, $value) = explode("=", $dec);
+        if ($name == $ndsparm) {
+            $$name = $value;
+            break;
+        }
     }
-  }
 }
 
 if (isset($gatewayurl)) {
-  $gatewayurl=rawurldecode($gatewayurl);
+    $gatewayurl = rawurldecode($gatewayurl);
 }
 
-$me=$_SERVER['SCRIPT_NAME'];
-$host=$_SERVER['HTTP_HOST'];
-$fas=$GLOBALS["fas"];
-$iv=$GLOBALS["iv"];
-$clientip=$GLOBALS["clientip"];
-$gatewayname=$GLOBALS["gatewayname"];
-$gatewayaddress=$GLOBALS["gatewayaddress"];
-$gatewaymac=$GLOBALS["gatewaymac"];
-$key=$GLOBALS["key"];
-$hid=$GLOBALS["hid"];
-$clientif=$GLOBALS["clientif"];
-$originurl=$GLOBALS["originurl"];
+$me = $_SERVER['SCRIPT_NAME'];
+$host = $_SERVER['HTTP_HOST'];
+$fas = $GLOBALS["fas"];
+$iv = $GLOBALS["iv"];
+$clientip = $GLOBALS["clientip"];
+$gatewayname = $GLOBALS["gatewayname"];
+$gatewayaddress = $GLOBALS["gatewayaddress"];
+$gatewaymac = $GLOBALS["gatewaymac"];
+$key = $GLOBALS["key"];
+$hid = $GLOBALS["hid"];
+$clientif = $GLOBALS["clientif"];
+$originurl = $GLOBALS["originurl"];
 
 $_SESSION['authaction'] = "http://$gatewayaddress/opennds_auth/";
-$_SESSION['tok'] = hash('sha256', $hid.$key);
+$_SESSION['tok'] = hash('sha256', $hid . $key);
 $_SESSION['mac'] = $GLOBALS["clientmac"];
 $table_name = $_SERVER['TABLE_DATA'];
 $_SESSION["user_type"] = "new";
@@ -122,15 +122,15 @@ if ($result->num_rows >= 1) {
                         </div>
                         <span id="error-msg" class="help is-danger"></span>
                         <br>
-<!--                        <div class="columns is-centered is-mobile">-->
-<!--                            <div class="control">-->
-<!--                                <label class="checkbox">-->
-<!--                                    <input type="checkbox" required>-->
-<!--                                    I agree to the <a href="policy.php">Terms & Conditions</a>-->
-<!--                                </label>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <br>-->
+                        <!--                        <div class="columns is-centered is-mobile">-->
+                        <!--                            <div class="control">-->
+                        <!--                                <label class="checkbox">-->
+                        <!--                                    <input type="checkbox" required>-->
+                        <!--                                    I agree to the <a href="policy.php">Terms & Conditions</a>-->
+                        <!--                                </label>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <br>-->
                         <div class="buttons is-centered">
                             <button id="btn" class="button is-link">Connect</button>
                         </div>
@@ -145,7 +145,10 @@ if ($result->num_rows >= 1) {
         const button = document.querySelector("#btn");
         const iti = window.intlTelInput(input, {
             initialCountry: "tr",
-            hiddenInput: "full",
+            hiddenInput: () => ({
+                phone: "full_phone",
+                country: "country_code"
+            }),
             utilsScript: "assets/build/js/utils.js"
         });
         const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
@@ -182,7 +185,6 @@ if ($result->num_rows >= 1) {
         // on keyup / change flag: reset
         input.addEventListener('change', reset);
         input.addEventListener('keyup', reset);
-
     </script>
 </body>
 
