@@ -117,7 +117,7 @@ if ($result->num_rows >= 1) {
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class="input" type="tel" id="phone" name="phone[full]" placeholder="Phone" required>
+                                <input class="input" type="tel" id="phone" name="phone" placeholder="Phone" required>
                             </div>
                         </div>
                         <span id="error-msg" class="help is-danger"></span>
